@@ -1,4 +1,4 @@
-const cities = {
+const translateCities = {
     'Tokio': '東京',
     'Seul': '서울',
     'Singapur': '新加坡',
@@ -26,6 +26,7 @@ const cities = {
     'Luxor': 'لوكسور',
     'Marrakech': 'مراكش',
     'Shanghai': '上海',
+    'Beijing': '北京',
 }
 
-export default cities;
+export default translateCities;

@@ -1,6 +1,7 @@
 import Airtrip from "../models/airtrip.js";
 import Landtrip from "../models/landtrip.js";
-import cities from "../helpers/translator.js";
+import translateCities from "../helpers/translator.js";
+
 
 const TravelControllers = {
     async getAirtrip(req, res) {
@@ -10,39 +11,33 @@ const TravelControllers = {
         }
         const airtrip = await Airtrip.find({
             $or: [
-                {tripName: {$regex: search, $options: 'i'}},
-                {cities: {$regex: search, $options: 'i'}},
-                {'flights.departureCity': {$regex: search, $options: 'i'}}
+                {tripName: {$regex: `.*${search}.*`, $options: 'i'}},
+                {cities: {$regex: `.*${search}.*`, $options: 'i'}},
+                {'flights.departureCity': {$regex: `.*${search}.*`, $options: 'i'}}
             ]
         });
         if (airtrip.length === 0) {
             return res.status(404).json({message: 'No trip found'});
         }
         if (airtrip) {
-            airtrip.forEach((trip) => {
-                    trip.cities.forEach((city, index) => {
-                        if (cities[city]) {
-                            trip.cities[index] = cities[city];
-                        }
-                    });
-                    trip.flights.forEach((flight, index) => {
-                        if (cities[flight.departureCity]) {
-                            trip.flights[index].departureCity = cities[flight.departureCity];
-                        }
-                    });
-                }
-            );
             const results = airtrip.map((trip) => {
-                let tripName = trip.tripName;
-                let type = trip.type;
-                let duration = `${trip.duration} days`;
-                let flight = trip.flights[0];
+                const tripName = trip.tripName;
+                const type = trip.type;
+                const duration = `${trip.duration} days`;
+                const flight = trip.flights[0];
                 let departureCity = flight.departureCity;
-                let departureTime = flight.departureTime;
-                let flight2 = trip.flights[1];
+                const departureTime = flight.departureTime;
+                const flight2 = trip.flights[1];
                 let arrivalCity = flight2.departureCity;
-                let arrivalTime = flight2.departureTime;
+                const arrivalTime = flight2.departureTime;
 
+                if (departureCity in translateCities) {
+                    departureCity = translateCities[departureCity];
+                }
+
+                if (arrivalCity in translateCities) {
+                    arrivalCity = translateCities[arrivalCity];
+                }
 
                 return `${tripName}; ${type}; ${duration}; ${departureCity}; ${departureTime} - ${arrivalCity}; ${arrivalTime}`;
             });
@@ -67,29 +62,21 @@ const TravelControllers = {
             return res.status(404).json({message: 'No trip found'});
         }
         if (landtrip) {
-            landtrip.forEach((trip) => {
-                    trip.cities.forEach((city, index) => {
-                        if (cities[city]) {
-                            trip.cities[index] = cities[city];
-                        }
-                    });
-                    trip.hotels.forEach((hotel, index) => {
-                        if (cities[hotel.name]) {
-                            trip.hotels[index].name = cities[hotel.name];
-                        }
-                    });
-                }
-            );
             const results = landtrip.map((trip) => {
-                    let tripName = trip.tripName;
-                    let type = trip.type;
-                    let duration = `${trip.duration} days`;
-                    let hotel = trip.hotels[0];
-                    let hotelName = hotel.name;
-                    let hotelCategory = hotel.category;
-                    let hotelStars = hotel.stars;
+                    const tripName = trip.tripName;
+                    const type = trip.type;
+                    const duration = `${trip.duration} days`;
+                    let cities = trip.cities;
+                    const hotel = trip.hotels[0];
+                    const hotelName = hotel.name;
+                    const hotelCategory = hotel.category;
+                    const hotelStars = hotel.stars;
 
-                    return `${tripName}; ${type}; ${duration}; ${hotelName}; ${hotelStars} stars; ${hotelCategory}`;
+                    if (cities in translateCities) {
+                        cities = translateCities[cities];
+                    }
+
+                    return `${tripName}; ${type}; ${duration}; ${hotelName}; ${hotelStars} stars; ${hotelCategory} category; ${cities}`
                 }
             );
 
