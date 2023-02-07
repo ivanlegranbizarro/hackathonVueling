@@ -132,4 +132,5 @@ dist
 
 
 .idea
-.vscode
+.vscode!
+peticiones.http
