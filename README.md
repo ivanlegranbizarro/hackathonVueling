@@ -1,4 +1,4 @@
-# Bienvenidos a la Hackathon de Vueling
+# Bienvenidos a la Hackathon de Vueling ✈️
 
 ¡Aquí comienza la aventura! Esta es una API Rest creada para la Hackathon de Vueling, donde podrás planificar tus viajes por aire o por tierra con la ayuda de nuestro equipo de expertos. Ya sea que estés planeando una escapada rápida o un viaje a la aventura, tenemos todo lo que necesitas para hacer realidad tus sueños de viaje. ¡Agárrate a tus asientos y preparemos juntos el próximo gran viaje!
 
