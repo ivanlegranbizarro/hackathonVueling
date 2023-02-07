@@ -1,0 +1,29 @@
+{
+  "name": "hackathonvueling",
+  "version": "1.0.0",
+  "description": "Api Rest creada con Node y Express JS para participar en la Hackathon de Vueling",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "hackathon",
+    "vueling"
+  ],
+  "author": "Iván Legrán  Bizarro",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "mongoose": "^6.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
