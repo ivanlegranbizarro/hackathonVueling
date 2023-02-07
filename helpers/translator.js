@@ -27,3 +27,5 @@ const cities = {
     'Marrakech': 'مراكش',
     'Shanghai': '上海',
 }
+
+export default cities;

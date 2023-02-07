@@ -32,8 +32,10 @@ const airTripValidation = [
     check('cities.*').isString().withMessage('Cities must be a string'),
     check('flights').isArray({min: 1}).withMessage('Flights must be an array with at least one element'),
     check('flights.*.departureCity').isString().withMessage('Departure City must be a string'),
-    check('flights.*.departureTime').isString().withMessage('Departure Time must be a string')
+    check('flights.*.departureTime').isString().withMessage('Departure Time must be a string'),
+
+    useValidation
 ];
 
 
-export {useValidation, airTripValidation, landTripValidator};
+export {airTripValidation, landTripValidator};
