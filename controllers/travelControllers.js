@@ -32,8 +32,24 @@ const TravelControllers = {
                     });
                 }
             );
-            return res.status(200).json(airtrip);
+            const results = airtrip.map((trip) => {
+                let tripName = trip.tripName;
+                let type = trip.type;
+                let duration = `${trip.duration} days`;
+                let flight = trip.flights[0];
+                let departureCity = flight.departureCity;
+                let departureTime = flight.departureTime;
+                let flight2 = trip.flights[1];
+                let arrivalCity = flight2.departureCity;
+                let arrivalTime = flight2.departureTime;
+
+
+                return `${tripName}; ${type}; ${duration}; ${departureCity}; ${departureTime} - ${arrivalCity}; ${arrivalTime}`;
+            });
+
+            return res.status(200).json({results});
         }
+
     },
     async getLandtrip(req, res) {
         const {search} = req.query;
@@ -64,7 +80,20 @@ const TravelControllers = {
                     });
                 }
             );
-            return res.status(200).json(landtrip);
+            const results = landtrip.map((trip) => {
+                    let tripName = trip.tripName;
+                    let type = trip.type;
+                    let duration = `${trip.duration} days`;
+                    let hotel = trip.hotels[0];
+                    let hotelName = hotel.name;
+                    let hotelCategory = hotel.category;
+                    let hotelStars = hotel.stars;
+
+                    return `${tripName}; ${type}; ${duration}; ${hotelName}; ${hotelStars} stars; ${hotelCategory}`;
+                }
+            );
+
+            return res.status(200).json({results});
         }
     },
     async updateAirtrip(req, res) {
