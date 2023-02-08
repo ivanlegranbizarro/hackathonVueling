@@ -4,6 +4,14 @@ import translateCities from "../helpers/translator.js";
 
 
 const TravelControllers = {
+    /**
+     Get airtrip data from database matching the search query
+     @function
+     @async
+     @param {Object} req - Express request object
+     @param {Object} res - Express response object
+     @returns {(Object|Array)} Returns a JSON object or an array of strings representing the airtrip data
+     */
     async getAirtrip(req, res) {
         const {search} = req.query;
         if (search.length < 3) {
@@ -47,6 +55,14 @@ const TravelControllers = {
 
     },
     async getLandtrip(req, res) {
+        /**
+         * Get landtrip data from database matching the search query
+         * @function
+         * @async
+         * @param {Object} req - Express request object
+         * @param {Object} res - Express response object
+         * @returns {(Object|Array)} Returns a JSON object or an array of strings representing the landtrip data
+         */
         const {search} = req.query;
         if (search.length < 3) {
             return res.status(400).json({message: 'Search must have at least 3 characters'});
@@ -84,6 +100,14 @@ const TravelControllers = {
         }
     },
     async updateAirtrip(req, res) {
+        /**
+         * Update airtrip data in database
+         * @function
+         * @async
+         * @param {Object} req - Express request object
+         * @param {Object} res - Express response object
+         * @returns {(Object|Array)} Returns a JSON object or an array of strings representing the airtrip data
+         */
         const {id} = req.params;
         const {tripName, duration, cities, flights} = req.body;
         const airtrip = await Airtrip.findByIdAndUpdate(id, {
@@ -98,6 +122,14 @@ const TravelControllers = {
         return res.status(404).json({message: 'Trip not found'});
     },
     async updateLandtrip(req, res) {
+        /**
+         * Update landtrip data in database
+         * @function
+         * @async
+         * @param {Object} req - Express request object
+         * @param {Object} res - Express response object
+         * @returns {(Object|Array)} Returns a JSON object or an array of strings representing the landtrip data
+         */
         const {id} = req.params;
         const {tripName, duration, cities, hotels} = req.body;
         const landtrip = await Landtrip.findByIdAndUpdate(id, {
@@ -112,6 +144,14 @@ const TravelControllers = {
         return res.status(404).json({message: 'Trip not found'});
     },
     async deleteAirtrip(req, res) {
+        /**
+         * Delete airtrip data from database
+         * @function
+         * @async
+         * @param {Object} req - Express request object
+         * @param {Object} res - Express response object
+         * @returns {(Object|Array)} Returns a JSON object or an array of strings representing the airtrip data
+         */
         const {id} = req.params;
         const airtrip = await Airtrip.findByIdAndDelete(id);
         if (airtrip) {
@@ -120,6 +160,14 @@ const TravelControllers = {
         return res.status(404).json({message: 'Trip not found'});
     },
     async deleteLandtrip(req, res) {
+        /**
+         * Delete landtrip data from database
+         * @function
+         * @async
+         * @param {Object} req - Express request object
+         * @param {Object} res - Express response object
+         * @returns {(Object|Array)} Returns a JSON object or an array of strings representing the landtrip data
+         */
         const {id} = req.params;
         const landtrip = await Landtrip.findByIdAndDelete(id);
         if (landtrip) {
@@ -128,6 +176,12 @@ const TravelControllers = {
         return res.status(404).json({message: 'Trip not found'});
     },
     async createAirtrip(req, res) {
+        /**
+         * Create a new air trip in the database
+         * @param {Object} req - Express request object. It contains the trip data to be stored in the database
+         * @param {Object} res - Express response object. It is used to return the status of the operation to the client.
+         * @returns {Promise<*>} - A promise that returns the created air trip on success or a JSON object with an error message on failure.
+         */
         const {tripName, duration, cities, flights} = req.body;
         const airtrip = await Airtrip.create({
             tripName,
@@ -141,6 +195,12 @@ const TravelControllers = {
         return res.status(400).json({message: 'Error creating trip'});
     },
     async createLandtrip(req, res) {
+        /**
+         * Create a new land trip in the database
+         * @param {Object} req - Express request object. It contains the trip data to be stored in the database
+         * @param {Object} res - Express response object. It is used to return the status of the operation to the client.
+         * @returns {Promise<*>} - A promise that returns the created land trip on success or a JSON object with an error message on failure.
+         */
         const {tripName, duration, cities, hotels} = req.body;
         const landtrip = await Landtrip.create({
             tripName,
@@ -154,6 +214,12 @@ const TravelControllers = {
         return res.status(400).json({message: 'Error creating trip'});
     },
     async addNewTravelCity(req, res) {
+        /**
+         * Add a new city to the travel cities list
+         * @param {Object} req - Express request object. It contains the city data to be stored in the database
+         * @param {Object} res - Express response object. It is used to return the status of the operation to the client.
+         * @returns {Promise<*>} - A promise that returns the created city on success or a JSON object with an error message on failure.
+         */
         const {city} = req.body;
         const {translation} = req.body;
         if (city in translateCities) {
