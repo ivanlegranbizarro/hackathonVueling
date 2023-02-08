@@ -4,17 +4,17 @@
 
 ## Endpoints
 
-| Endpoint      | Method | Description                                          |
-|---------------|--------|------------------------------------------------------|
-| /airtrip      | GET    | Obtiene todos los viajes en avión                    |
-| /airtrip/:id  | PUT    | Actualiza un viaje en avión por su id                |
-| /airtrip/:id  | DELETE | Elimina un viaje en avión por su id                  |
-| /airtrip      | POST   | Crea un nuevo viaje en avión                         |
-| /landtrip     | GET    | Obtiene todos los viajes en tierra                   |
-| /landtrip/:id | PUT    | Actualiza un viaje en tierra por su id               |
-| /landtrip/:id | DELETE | Elimina un viaje en tierra por su id                 |
-| /landtrip     | POST   | Crea un nuevo viaje en tierra                        |
-| /addCity      | POST   | Añade una nueva ciudad al diccionaro de traducciones |
+| Endpoint      | Method | Description                                           |
+|---------------|--------|-------------------------------------------------------|
+| /airtrip      | GET    | Obtiene todos los viajes en avión                     |
+| /airtrip/:id  | PUT    | Actualiza un viaje en avión por su id                 |
+| /airtrip/:id  | DELETE | Elimina un viaje en avión por su id                   |
+| /airtrip      | POST   | Crea un nuevo viaje en avión                          |
+| /landtrip     | GET    | Obtiene todos los viajes en tierra                    |
+| /landtrip/:id | PUT    | Actualiza un viaje en tierra por su id                |
+| /landtrip/:id | DELETE | Elimina un viaje en tierra por su id                  |
+| /landtrip     | POST   | Crea un nuevo viaje en tierra                         |
+| /addCity      | POST   | Añade una nueva ciudad al diccionario de traducciones |
 
 ## Para ejecutar el proyecto
 
