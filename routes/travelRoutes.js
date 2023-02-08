@@ -16,6 +16,7 @@ router.delete("/landtrip/:id", TravelControllers.deleteLandtrip);
 
 router.post("/airtrip", airTripValidation, TravelControllers.createAirtrip);
 router.post("/landtrip", landTripValidator, TravelControllers.createLandtrip);
+
 router.post("/addcity", TravelControllers.addNewTravelCity);
 
 export default router;

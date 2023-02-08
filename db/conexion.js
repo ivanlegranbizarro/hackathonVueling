@@ -4,7 +4,7 @@ mongoose.set( 'strictQuery', false );
 
 const conexion = async () => {
   try {
-    await mongoose.connect( 'mongodb://localhost:27017/chatSprint5' );
+    await mongoose.connect( 'mongodb://localhost:27017/hackathonVueling' );
     console.log( 'Conectado a la base de datos' );
   } catch ( error ) {
     console.log( error );
