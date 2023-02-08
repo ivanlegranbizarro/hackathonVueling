@@ -152,6 +152,15 @@ const TravelControllers = {
             return res.status(201).json(landtrip);
         }
         return res.status(400).json({message: 'Error creating trip'});
+    },
+    async addNewTravelCity(req, res) {
+        const {city} = req.body;
+        const {translation} = req.body;
+        if (city in translateCities) {
+            return res.status(400).json({message: 'City already exists'});
+        }
+        translateCities[city] = translation
+        return res.status(200).json({message: 'City added correctly'});
     }
 }
 
